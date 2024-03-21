@@ -1,7 +1,7 @@
 export default function AboutPage(){
     return (
         <main className="">
-            Aboyut
+            about
         </main>
     )
 }
