@@ -45,16 +45,20 @@ export default function Todos(){
       setError('Title and Description are required!');
       return;
     }
-    const newTodo = { title, desc, is_finish: false };
+    const newTodo = { id: todos.length + 1, title, desc, is_finish: false };
     setTodos([...todos, newTodo]);
     setTitle('');
     setDesc('');
     setError('');
   };
 
-  const handleCheck = (index) => {
-    const updatedTodos = [...todos];
-    updatedTodos[index].is_finish = !updatedTodos[index].is_finish;
+  const handleCheck = (id) => {
+    const updatedTodos = todos.map(todo => {
+      if (todo.id === id) {
+        return { ...todo, is_finish: !todo.is_finish }; 
+      }
+      return todo;
+    });
     setTodos(updatedTodos);
   };
 
@@ -83,37 +87,59 @@ export default function Todos(){
               <div className="w-full md:w-1/2 px-4">
               
                 <div className="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden mb-4">
-                  <div className="px-4 py-2 overflow-y-auto max-h-48">
-                  {filteredTodos(false).map((todo, index) => (
-                        <Card className='m-4' key={index}>
-                          <input
-                            type="checkbox"
-                            checked={todo.is_finish}
-                            onChange={() => handleCheck(index)}
-                          />
-                          <label>{todo.title}</label>
-                          <p>{todo.desc}</p>
+                  <div className="px-4 py-2 overflow-auto max-h-48">
+                    <Heading size='sm'>
+                      Todo
+                    </Heading>
+                  {filteredTodos(false).map(todo => (
+                        <Card className='px-4  py-2 m-4' key={todo.id}>
+                          <Box className='flex'>
+
+                            <Box className='flex flex-col'>
+
+                              <Heading size='md' textTransform='uppercase' >{todo.title}</Heading>
+                              <Text fontSize='xs'>{todo.desc}</Text>
+                            </Box>
+                            <Box className='ml-auto flex items-center'>
+                              <input
+                                type="checkbox"
+                                checked={todo.is_finish}
+                                onChange={() => handleCheck(todo.id)}
+                              />
+
+                            </Box>
+                          </Box>
                         </Card>
                       ))}
                   </div>
                 </div>
               </div>
               <div className="w-full md:w-1/2 px-4">
-            
                 <div className="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden mb-4">
-                  <div className="px-4 py-2 overflow-y-auto max-h-48">
-                  {filteredTodos(true).map((todo, index) => (
-                    <Card className='m-4' key={index}>
-                      <label>{todo.title}</label>
-                      <p>{todo.desc}</p>
-                      <input
-                        type="checkbox"
-                        checked={todo.is_finish}
-                        onChange={() => handleCheck(index)}
-                      />
-                      
-                    </Card>
-                  ))}
+                <div className="px-4 py-2 overflow-y-auto max-h-48">
+                <Heading size='sm'>
+                      Finish
+                    </Heading>
+                  {filteredTodos(true).map(todo => (
+                        <Card className='px-4  py-2 m-4' key={todo.id}>
+                          <Box className='flex'>
+
+                            <Box className='flex flex-col'>
+
+                              <Heading size='md' textTransform='uppercase' >{todo.title}</Heading>
+                              <Text fontSize='xs'>{todo.desc}</Text>
+                            </Box>
+                            <Box className='ml-auto flex items-center'>
+                              <input
+                                type="checkbox"
+                                checked={todo.is_finish}
+                                onChange={() => handleCheck(todo.id)}
+                              />
+
+                            </Box>
+                          </Box>
+                        </Card>
+                      ))}
                   </div>
                 </div>
               </div>
