@@ -1,9 +1,11 @@
 "use client"
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation';
 
 export default function Navbar(){
     const { status } = useSession();
+    const pathname = usePathname();
 
     return (
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
