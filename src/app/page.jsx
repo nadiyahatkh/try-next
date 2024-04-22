@@ -83,11 +83,11 @@ export default function Todos(){
               </Button>
           </CardHeader>
           <CardBody>
-          <div className="flex flex-wrap">
-              <div className="w-full md:w-1/2 px-4">
+          <div className="w-full flex flex-wrap">
+              <div className="md:w-1/2 px-4">
               
-                <div className="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden mb-4">
-                  <div className="px-4 py-2 overflow-auto max-h-48">
+                <div className="max-w-lg mx-auto bg-white rounded-xl shadow-md overflow-hidden mb-4">
+                  <div className="px-4 py-2 overflow-y-auto max-h-80">
                     <Heading size='sm'>
                       Todo
                     </Heading>
@@ -115,8 +115,8 @@ export default function Todos(){
                 </div>
               </div>
               <div className="w-full md:w-1/2 px-4">
-                <div className="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden mb-4">
-                <div className="px-4 py-2 overflow-y-auto max-h-48">
+                <div className="max-w-lg mx-auto bg-white rounded-xl shadow-md overflow-hidden mb-4">
+                <div className="px-4 py-2 overflow-auto max-h-80">
                 <Heading size='sm'>
                       Finish
                     </Heading>
